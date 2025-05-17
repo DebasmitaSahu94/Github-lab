@@ -108,5 +108,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: hemant/bankapp:latest
+          tags: devopsbanks/bankapp:latest   # dockerhub repo name is devopsbanks/bankapp
           file: ./Dockerfile
