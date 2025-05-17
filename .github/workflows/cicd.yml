@@ -14,7 +14,7 @@ on:
 
 jobs:
   compile:                              # job1 name: compile
-    runs-on: ubuntu-latest              # shared runner name 
+    runs-on: self-hosted              # self hosted runner name 
 
     steps:
     - uses: actions/checkout@v4         # checkout the code on runner/ make a local copy of the code on runner
@@ -28,7 +28,7 @@ jobs:
       run: mvn compile
 
   security-check:                              # job2 name: security check
-    runs-on: ubuntu-latest              # shared runner name 
+    runs-on: self-hosted              # self hosted runner name 
     needs: compile                      # set the dependency. this job will run after finish the previous job
     steps:
     - uses: actions/checkout@v4         # checkout the code on runner/ make a local copy of the code on runner
@@ -38,7 +38,7 @@ jobs:
         wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
         echo deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main | sudo tee -a /etc/apt/sources.list.d/trivy.list
         sudo apt-get update -y
-        sudo apt-get install trivy -y
+        sudo apt-get install -y trivy
 
     - name: Trivy FS Scan
       run: trivy fs --format table -o fs-report.json .        # aap shared runner use kiye ho so fs-report.json file shared runner pe banega . aap ko access ni hoga.
@@ -49,3 +49,21 @@ jobs:
     - name: Gitleaks Code Scan
       run: gitleaks detect source . -r gitleaks-report.json -f json      # aap shared runner use kiye ho so gitleaks-report.json file shared runner pe banega . aap ko access ni hoga.
       
+
+
+  test:                              # job1 name: compile
+    runs-on: self-hosted              # self hosted runner name 
+
+    steps:
+    - uses: actions/checkout@v4         # checkout the code on runner/ make a local copy of the code on runner
+    - name: Set up JDK 17               # each step can have its name.  
+      uses: actions/setup-java@v4       # setup env for installing jdk
+      with:
+        java-version: '17'              
+        distribution: 'temurin'
+        cache: maven
+    - name: Unit Test Case
+      run: mvn test
+
+
+  
