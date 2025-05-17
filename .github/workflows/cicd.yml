@@ -80,7 +80,7 @@ jobs:
       run: mvn package
 
     - name: Upload JAR artifact 
-      uses: actions/upload-artifact@4
+      uses: actions/upload-artifact@3
       with:
         name: apt-jar
         path: target/*.jar
