@@ -29,7 +29,7 @@ jobs:
 
   security-check:                              # job2 name: security check
     runs-on: ubuntu-latest              # shared runner name 
-
+    needs: compile                      # set the dependency. this job will run after finish the previous job
     steps:
     - uses: actions/checkout@v4         # checkout the code on runner/ make a local copy of the code on runner
     - name: Trivy Install
