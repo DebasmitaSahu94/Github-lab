@@ -83,7 +83,7 @@ jobs:
       uses: actions/upload-artifact@4
       with:
         name: apt-jar
-        path: target/* .jar
+        path: target/*.jar
       
     - uses: actions/checkout@v4
       with:
