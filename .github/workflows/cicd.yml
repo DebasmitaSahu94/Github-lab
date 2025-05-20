@@ -152,7 +152,8 @@ jobs:
         kubectl create secret docker-registry dockerhub-secret \
           --docker-username=${{ vars.DOCKER_USERNAME }} \
           --docker-password=${{ secrets.DOCKER_TOKEN }} \
-          --docker-email=debasmitasahu.msg@gmail.com 
+          --docker-email=debasmitasahu.msg@gmail.com \
+          --docker-server=https://index.docker.io/v1/
           
     - name: Deploy to AKS
       run: kubectl apply -f ds.yml      
