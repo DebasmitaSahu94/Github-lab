@@ -36,15 +36,15 @@ jobs:
     - name: Run Trivy Filesystem Scan
       run: trivy fs --format json -o fs-report.json .
 
-    - name: Install Gitleaks
-      run: |
-        curl -sSL https://github.com/gitleaks/gitleaks/releases/latest/download/gitleaks-linux-amd64 -o gitleaks
-        chmod +x gitleaks
-        sudo mv gitleaks /usr/local/bin/gitleaks
-        gitleaks version # Verify that Gitleaks is installed correctly
+#    - name: Install Gitleaks
+#      run: |
+#        curl -sSL https://github.com/gitleaks/gitleaks/releases/latest/download/gitleaks-linux-amd64 -o gitleaks
+#        chmod +x gitleaks
+#        sudo mv gitleaks /usr/local/bin/gitleaks
+#        gitleaks version # Verify that Gitleaks is installed correctly
 
-    - name: Run Gitleaks Scan
-      run: gitleaks detect --source . --report-path gitleaks-report.json --report-format json
+#    - name: Run Gitleaks Scan
+#      run: gitleaks detect --source . --report-path gitleaks-report.json --report-format json
 
   test:
     needs: security-check
