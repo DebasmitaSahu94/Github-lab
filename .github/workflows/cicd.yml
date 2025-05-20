@@ -150,8 +150,8 @@ jobs:
       run: |
         kubectl delete secret dockerhub-secret --ignore-not-found 
         kubectl create secret docker-registry dockerhub-secret \
-          --docker-username=${{ vars.DOCKER_USERNAME }} \
-          --docker-password=${{ secrets.DOCKER_TOKEN }} \
+          --docker-username=${{ vars.DOCKERHUB_USERNAME }} \
+          --docker-password=${{ secrets.DOCKERHUB_TOKEN }} \
           --docker-email=debasmitasahu.msg@gmail.com \
           --docker-server=https://index.docker.io/v1/
           
