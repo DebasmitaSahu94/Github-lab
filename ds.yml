@@ -53,6 +53,8 @@ spec:
       labels:
         app: bankapp
     spec:
+      imagePullSecrets:
+        - name: dockerhub-secret
       containers:
         - name: bankapp
           image: devopsbanks/bankapp:latest   # ✅ Updated image
